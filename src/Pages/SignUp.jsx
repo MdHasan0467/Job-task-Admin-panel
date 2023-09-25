@@ -9,14 +9,14 @@ import { postAUserInSignUp } from "../APIs/userOperations";
 const SignUp = () => {
     const { createUser, updateUser } = useContext(AuthContext);
 
-    const [error, setError] = useState(false);
+
     const [imgURL, setImgURL] = useState();
 
     const navigate = useNavigate();
     const from = location?.state?.from?.pathname || '/admin/dashboard';
 
 
-    console.log('error', error);
+
     
 
         //* Handle Image Upload
@@ -59,6 +59,8 @@ const SignUp = () => {
                         role: "User",
                         status: "Email Login"
                     }
+
+                    console.log(userData);
     
                     postAUserInSignUp(userData)
                     .then((response) => {
@@ -81,10 +83,7 @@ const SignUp = () => {
                 })
                 .catch((err) => {
                     console.log(err);
-                    setError();
                 });
-            }else{
-                setError('Profile not found!')
             }
     
         };

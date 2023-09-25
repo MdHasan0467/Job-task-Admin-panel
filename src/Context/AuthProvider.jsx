@@ -1,4 +1,3 @@
-
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import app from "../Firebase/firebase.init";
@@ -18,12 +17,21 @@ const AuthProvider = ({ children }) => {
 
 
     const [user, setUser] = useState(null);
+    const [logUser, setLogUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
 
 
-    // const googleProvider = new GoogleAuthProvider();
-    // const facebookProvider = new FacebookAuthProvider();
+
+// ! Get login User from database
+
+useEffect(() => {
+	fetch(`http://localhost:5000/user/${user?.email}`)
+		.then((res) => res.json())
+		.then((result) => {
+			setLogUser(result?.result);
+		});
+}, [user?.email]);    
 
 
 
@@ -31,10 +39,10 @@ const AuthProvider = ({ children }) => {
 
 //! User create 
 
-    const createUser = (email, password) => {
-        setLoading(true);
-        return createUserWithEmailAndPassword(auth, email, password)
-    }
+const createUser = (email, password) => {
+    setLoading(true);
+    return createUserWithEmailAndPassword(auth, email, password)
+}
 
 //! Update profile
 const updateUser = (name, photoURL) => {
@@ -51,26 +59,14 @@ const userSingIn = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password)
 }
 
-//! Google sign in 
-
-// const googleSignIn = () =>{
-//     setLoading(true);
-//     return signInWithPopup(auth , googleProvider)
-// }
-
-//! Facebook sign in 
-
-// const facebookSignIn = () =>{
-//   return signInWithPopup(auth , facebookProvider)
-// }
 
 
 
 //! logOut
 const logOut = () => {
-  setLoading(true);
-  localStorage.removeItem('accessToken')
-  return signOut(auth);
+    setLoading(true);
+    localStorage.removeItem('accessToken')
+    return signOut(auth);
 };
 
 
@@ -83,16 +79,15 @@ useEffect(() => {
     return () => unsubscribe();
   }, []);
 
-
+console.log(logUser);
 
     const authInfo = {
         createUser,
         updateUser,
         userSingIn,
-        // googleSignIn,
-        // facebookSignIn,
         loading,
         user,
+        logUser,
         logOut,
     }
     return (

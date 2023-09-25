@@ -24,7 +24,7 @@ export const postAUserInSignUp = async (userData) => {
 
 export const getCurrentUserInfo = async (user) => {
     try {
-        const response = await instance.get(`/email/${user?.email}`);
+        const response = await instance.get(`/user/${user?.email}`);
         const data = await response;
         // console.log(data);
         return data;
