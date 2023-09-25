@@ -1,3 +1,4 @@
 # Admin panel
 
-## http://localhost:5173/
+## For live on local
+### http://localhost:5173/
