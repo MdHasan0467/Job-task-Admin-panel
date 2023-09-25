@@ -3,9 +3,8 @@
 ## To run the project locally
 ####  i. npm install
 #### ii. npm run dev
-#### ![github](https://cloud.githubusercontent.com/assets/17016297/18839843/0e06a67a-83d2-11e6-993a-b35a182500e0.png) 
 <p align="center">
   <a href="http://localhost:5173/">
-    <img src="https://skillicons.dev/icons?i=git,kubernetes,docker,c,vim" />
+    <img src="https://png.pngtree.com/png-clipart/20210311/original/pngtree-live-icon-3d-render-red-white-left-view-png-image_6041854.jpg" />
   </a>
 </p>
