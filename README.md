@@ -1,4 +1,4 @@
 # Admin panel
 
-## For live on local
+## To run the project locally
 ### http://localhost:5173/
