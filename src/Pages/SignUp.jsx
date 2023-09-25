@@ -2,6 +2,8 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/AuthProvider";
 import { handleImgBBUpload } from "../APIs/imageuploadOperation";
+import { toast } from "react-toastify";
+import { postAUserInSignUp } from "../APIs/userOperations";
 
 
 const SignUp = () => {
@@ -11,13 +13,16 @@ const SignUp = () => {
     const [imgURL, setImgURL] = useState();
 
     const navigate = useNavigate();
-    const from = location?.state?.from?.pathname || '/';
+    const from = location?.state?.from?.pathname || '/admin/dashboard';
+
+
+    console.log('error', error);
     
 
         //* Handle Image Upload
         const handleImageUpload = async (event) => {
             const image = event.target.files[0];
-    
+
             handleImgBBUpload(image)
             .then((response) => {
                 console.log(response);
@@ -25,7 +30,7 @@ const SignUp = () => {
             })
         };
 
-        console.log(imgURL);
+
 
         //* register function
         const handleRegister = (event) => {
@@ -34,20 +39,16 @@ const SignUp = () => {
             const name = form.name.value;
             const email = form.email.value;
             const password = form.password.value;
-            const confirmPassword = form.confirmPassword.value;
             const number = form.number.value;
-    
-    
-            if (password !== confirmPassword) {
-                setError(!error);
-                return;
-            }
-    
+
+
+
             if (imgURL) {
                 createUser(email, password)
-                .then(() => {
+                .then((result) => {
                     const photoURL = imgURL;
                     updateUserDetails(name, photoURL);
+                    console.log(result);
     
                     const userData = {
                         name,
@@ -61,9 +62,9 @@ const SignUp = () => {
     
                     postAUserInSignUp(userData)
                     .then((response) => {
-    
+
                         if(response?.acknowledged === true && response.insertedId) {
-                            // console.log(response);
+                            console.log(response);
                             navigate(from, { replace: true });
                             toast.success("successfully Email Login", {
                                 position: "bottom-center",
@@ -82,6 +83,8 @@ const SignUp = () => {
                     console.log(err);
                     setError();
                 });
+            }else{
+                setError('Profile not found!')
             }
     
         };
