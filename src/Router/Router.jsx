@@ -4,6 +4,7 @@ import AdminDashboard from "../Layouts/adminDashboard";
 import Login from "../Pages/Login";
 import SignUp from "../Pages/SignUp";
 import Home from "../Pages/Home";
+import ControlPanel from "../Pages/ControlPanel";
 
 
 const router = createBrowserRouter([
@@ -19,8 +20,15 @@ const router = createBrowserRouter([
             {
                 path: '/authentication/register', element: <SignUp />
             },
+            
+        ]
+    },
+
+    {
+        path: '/admin/dashboard', element: <AdminDashboard />,
+        children: [
             {
-                path: '/admin/dashboard', element: <AdminDashboard />
+                path: '/admin/dashboard/control-panel', element: <ControlPanel />
             },
         ]
     }

@@ -16,13 +16,6 @@ const SignUp = () => {
     const [imagePreview, setImagePreview] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
-console.log('imagePreview', imagePreview);
-
-        if(imagePreview === ''){
-            let a =document.getElementById("img")?.value;
-            console.log('a', a);
-            a = ''
-        }
 
         //* Handle Image Remove From Preview
         const handleRemoveImage = () => {
@@ -119,17 +112,17 @@ console.log('imagePreview', imagePreview);
 
 
     return (
-        <div className="hero min-h-screen">
-            <div className="hero-content flex-col lg:flex-row-reverse">
+    <div className="hero min-h-screen">
+        <div className="hero-content flex-col lg:flex-row-reverse">
 
-                <div className="card flex-shrink-0 w-full lg:shadow-2xl bg-base-100">
+            <div className="card flex-shrink-0 w-full lg:shadow-2xl bg-base-100">
                     
-                    <form onSubmit={handleRegister} className="card-body">
+                <form onSubmit={handleRegister} className="card-body">
 
-                        <h1 className="font-semibold text-2xl">Register Now</h1>
+                    <h1 className="font-semibold text-2xl">Register Now</h1>
 
-                        {/* Name & Email */}
-                        <div className="lg:flex gap-2">
+                    {/* Name & Email */}
+                    <div className="lg:flex gap-2">
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Name</span>
@@ -143,86 +136,86 @@ console.log('imagePreview', imagePreview);
                                 </label>
                                 <input name="email" type="text" placeholder="email" className="input input-bordered focus:outline-none focus:border-green-600" />
                             </div>
+                    </div>
+
+                    {/* Password & Number */}
+                    <div className="lg:flex gap-2">
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Password</span>
+                            </label>
+                            <input name="password" type="password" placeholder="password" className="input input-bordered focus:outline-none focus:border-green-600" />
+                            <label className="label">
+                                <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                            </label>
                         </div>
 
-                        {/* Password & Number */}
-                        <div className="lg:flex gap-2">
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Password</span>
-                                </label>
-                                <input name="password" type="password" placeholder="password" className="input input-bordered focus:outline-none focus:border-green-600" />
-                                <label className="label">
-                                    <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-                                </label>
-                            </div>
-
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Number</span>
-                                </label>
-                                <input name="number" type="number" placeholder="number" className="input input-bordered focus:outline-none focus:border-green-600" />
-                            </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Number</span>
+                            </label>
+                            <input name="number" type="number" placeholder="number" className="input input-bordered focus:outline-none focus:border-green-600" />
                         </div>
+                    </div>
 
-                        {/* Profile & Preview */}
-                        <div className="lg:flex gap-2">
+                    {/* Profile & Preview */}
+                    <div className="lg:flex gap-2">
                             
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Profile</span>
-                                </label>
-                                <input id="img" onChange={handleImageUpload} type="file" placeholder="image" className="input input-bordered focus:outline-none focus:border-green-600" />
-                            </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Profile</span>
+                            </label>
+                            <input onChange={handleImageUpload} type="file" placeholder="image" className="input input-bordered focus:outline-none focus:border-green-600" />
+                        </div>
 
-                            <div className="border-l flex justify-start lg:-mt-7 mt-2">
-                                <>
-                                {
-                                    isLoading ?
-                                        <p className="text-green-500">Uploading...</p>
-                                    :
-                                    <>
-                                        {imgURL ? 
-                                        <div
-                                        style={{ position: 'relative', display: 'inline-block' }}
-                                        >
-                                            <img src={imagePreview} 
-                                            className="object-cover lg:w-32 lg:h-32 rounded"
-                                            alt="Preview" />
+                        <div className="border-l flex justify-start lg:-mt-7 mt-2">
+                            <>
+                            {
+                            isLoading ?
+                                <p className="text-green-500">Uploading...</p>
+                            :
+                            <>
+                            {imgURL ? 
+                            <div
+                            style={{ position: 'relative', display: 'inline-block' }}
+                            >
+                                <img src={imagePreview} 
+                                className="object-cover lg:w-32 lg:h-32 rounded"
+                                alt="Preview" />
 
-                                            <button
-                                            onClick={handleRemoveImage}
-                                            className="bg-slate-100 hover:scale-90 duration-500 m-2 text-20 rounded-full w-7 h-7"
-                                            style={{
+                                <button
+                                onClick={handleRemoveImage}
+                                className="bg-slate-100 hover:scale-90 duration-500 m-2 text-20 rounded-full w-7 h-7"
+                                style={{
                                                 position: 'absolute',
                                                 top: '0',
                                                 right: '0',
                                                 border: 'none',
                                                 cursor: 'pointer',
-                                            }}
-                                            >
-                                            &times;
-                                            </button>
-                                        </div>
-                                        :
-                                        <div>
-                                            <img src="https://cdn.vectorstock.com/i/preview-1x/65/30/default-image-icon-missing-picture-page-vector-40546530.jpg" 
+                                }}
+                                >
+                                &times;
+                                </button>
+                            </div>
+                            :
+                            <div>
+                                <img src="https://cdn.vectorstock.com/i/preview-1x/65/30/default-image-icon-missing-picture-page-vector-40546530.jpg" 
                                             className="object-cover w-32 h-32 rounded"
                                             alt="Preview" />
-                                        </div>
-                                        }
-                                        
-                                    </>
-                                }
-                                </>
                             </div>
+                            }
+                                        
+                            </>
+                            }
+                            </>
+                        </div>
 
-                        </div>
+                    </div>
                         
-                        <div className="form-control mt-6">
+                    <div className="form-control mt-6">
                         <button className="btn btn-primary">Signup</button>
-                        </div>
-                    </form>
+                    </div>
+                </form>
 
                     <Link
                         to="/authentication/login"
