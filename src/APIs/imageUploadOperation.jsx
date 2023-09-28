@@ -19,3 +19,19 @@ export const handleImgBBUpload = async (image) => {
             console.error(error)
     }
 }
+
+
+// ! ..........  Image Preview .......... 
+export const handleImagePreview = async (image, setImagePreview, setIsLoading) => {
+    try {
+        const reader = new FileReader();
+            reader.onload = () => {
+                setImagePreview(reader.result);
+                setIsLoading(false);
+            };
+        reader.readAsDataURL(image);
+    } 
+    catch (error) {
+        console.error(error)
+    }
+}

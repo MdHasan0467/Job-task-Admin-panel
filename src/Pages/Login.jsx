@@ -15,10 +15,10 @@ const Login = () => {
     const [userEmail, setUserEmail] = useState();
     const [error, setError] = useState(false);
 
-    const location = useLocation();
+    // const location = useLocation();
     const navigate = useNavigate();
     // const from = location?.state?.form.pathname || "/";
-    const from = location?.pathname || '/admin/dashboard';
+    // const from = location?.pathname || '/admin/dashboard';
 
     console.log('error', error);
 
@@ -35,6 +35,25 @@ const Login = () => {
         .then((result) => {
             const userLogin = result.user;
                 console.log(userLogin);
+
+
+                const jwtPayload = {
+                    email : userLogin.email,
+                }
+                fetch('http://localhost:5000/create-jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(jwtPayload)
+                })
+                .then(res => res.json())
+                .then(result => {
+                    console.log(result);
+                    localStorage.setItem('access-token', result.token)
+                })
+
+
             toast.success("User logged in successfully", {
                 position: "bottom-center",
                 autoClose: 2000,
@@ -45,7 +64,7 @@ const Login = () => {
                 progress: undefined,
                 theme: "dark",
             });
-            navigate(from, { replace: true });
+            navigate('/admin/dashboard');
 
             // createToken(email)
         })
