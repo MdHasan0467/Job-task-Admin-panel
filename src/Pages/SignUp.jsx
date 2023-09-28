@@ -16,7 +16,13 @@ const SignUp = () => {
     const [imagePreview, setImagePreview] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
+console.log('imagePreview', imagePreview);
 
+        if(imagePreview === ''){
+            let a =document.getElementById("img")?.value;
+            console.log('a', a);
+            a = ''
+        }
 
         //* Handle Image Remove From Preview
         const handleRemoveImage = () => {
@@ -155,7 +161,7 @@ const SignUp = () => {
                                 <label className="label">
                                     <span className="label-text">Number</span>
                                 </label>
-                                <input name="number" type="text" placeholder="number" className="input input-bordered focus:outline-none focus:border-green-600" />
+                                <input name="number" type="number" placeholder="number" className="input input-bordered focus:outline-none focus:border-green-600" />
                             </div>
                         </div>
 
@@ -166,7 +172,7 @@ const SignUp = () => {
                                 <label className="label">
                                     <span className="label-text">Profile</span>
                                 </label>
-                                <input onChange={handleImageUpload} type="file" placeholder="image" className="input input-bordered focus:outline-none focus:border-green-600" />
+                                <input id="img" onChange={handleImageUpload} type="file" placeholder="image" className="input input-bordered focus:outline-none focus:border-green-600" />
                             </div>
 
                             <div className="border-l flex justify-start lg:-mt-7 mt-2">
